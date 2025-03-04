@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { FaCompress, FaExpandArrowsAlt } from "react-icons/fa";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Textarea } from "../ui/textarea";
 
 function CodeFile() {
@@ -304,7 +304,7 @@ function CodeFile() {
             <SyntaxHighlighter
               ref={syntaxHighlighterRef}
               language={language.toLowerCase()}
-              style={docco}
+              style={atomOneDark}
               customStyle={{
                 overflow: "auto",
                 fontSize: "14px",
