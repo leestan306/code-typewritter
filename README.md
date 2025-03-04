@@ -1,54 +1,108 @@
-# React + TypeScript + Vite
+# Code Typewriter 📝✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Code Typewriter is an interactive React component that brings code demonstrations to life with a smooth, typewriter-like animation. Perfect for creating engaging video tutorials, code walkthroughs, and educational content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Code Typewriter Demo](https://code.typewritter.leestan.dev/demo.gif)
 
-## Expanding the ESLint configuration
+## 🌟 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Realistic typewriter effect for code snippets
+- Customizable animation speed
+- Dynamic file size and styling
+- Supports multiple programming languages
+- Easy-to-use dialog for configuration
+- Responsive design
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Live Demo
+
+[code.typewritter.leestan.dev](https://code.typewritter.leestan.dev)
+
+## 📦 Installation
+
+### Prerequisites
+
+- React
+- Tailwind CSS
+- shadcn/ui components
+
+```bash
+npm install react tailwindcss @/components/ui
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Install the Package
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install code-typewriter
+# or
+yarn add code-typewriter
 ```
+
+## 🛠️ Usage
+
+### Basic Example
+
+```jsx
+import CodeFile from "code-typewriter";
+
+function Tutorial() {
+  return (
+    <CodeFile
+      initialCode="console.log('Hello, World!');"
+      language="javascript"
+    />
+  );
+}
+```
+
+### Customization Options
+
+- `initialCode`: Starting code snippet
+- `language`: Programming language
+- `duration`: Animation speed (ms)
+- `height`: Container height
+- `width`: Container width
+
+## 💡 Configuration Dialog
+
+Click the file icon or filename to open a dialog where you can:
+
+- Edit code snippet
+- Change programming language
+- Adjust container dimensions
+- Customize animation duration
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📋 TODO
+
+- [ ] Add more language support
+- [ ] Improve accessibility
+- [ ] Create more customization options
+
+## 🔧 Tech Stack
+
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- react-syntax-highlighter
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 📞 Contact
+
+Stanley Lee - [@leestan306](https://twitter.com/leestan306)
+
+Project Link: [https://github.com/leestan306/code-typewritter](https://github.com/leestan306/code-typewritter)
