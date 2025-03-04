@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { FaCompress, FaExpandArrowsAlt } from "react-icons/fa";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Textarea } from "../ui/textarea";
 
 function CodeFile() {
@@ -34,7 +34,7 @@ function CodeFile() {
   const [duration, setDuration] = useState(5000);
 
   // File div height and width
-  const [height, setHeight] = useState(500);
+  const [height, setHeight] = useState(600);
   const [width, setWidth] = useState(500);
   const syntaxHighlighterRef = useRef<any>(null);
   const codeFileRef = useRef<HTMLDivElement>(null);
@@ -136,6 +136,10 @@ function CodeFile() {
 
   const detailsDialogButtonRef = useRef<HTMLButtonElement>(null);
   const animateButtonref = useRef<HTMLButtonElement>(null);
+
+  const setPageTitle = (title = fileName) => {
+    document.title = `${title} - Code Highlighter`;
+  };
   return (
     <div className="" ref={codeFileRef}>
       <div className="py-2  justify-between w-fit mx-auto gap-2 hidden">
@@ -163,6 +167,7 @@ function CodeFile() {
                   value={fileName}
                   className="col-span-3"
                   onChange={(e) => setFileName(e.target.value)}
+                  onBlur={() => setPageTitle(fileName)}
                 />
               </div>
               <div className=" items-center gap-4">
@@ -271,14 +276,14 @@ function CodeFile() {
         <div
           id="code-file"
           className={cn(
-            "mx-auto min-h-[200px] bg-slate-800 my-10 text-slate-300 overflow-hidden"
+            "mx-auto min-h-[200px]  my-10 text-slate-300 overflow-hidden rounded"
           )}
           style={{
             maxWidth: `${width}px`,
             height: `${height}px`,
           }}
         >
-          <div className="flex border-b-[1px] p-1 w-full border-slate-700 items-center gap-2 cursor-pointer">
+          <div className="flex border-b-[1px] p-1 w-full border-slate-700 items-center gap-2 cursor-pointer bg-slate-800">
             <div
               onClick={() => {
                 detailsDialogButtonRef.current?.click();
@@ -304,7 +309,7 @@ function CodeFile() {
             <SyntaxHighlighter
               ref={syntaxHighlighterRef}
               language={language.toLowerCase()}
-              style={atomOneDark}
+              style={dracula}
               customStyle={{
                 overflow: "auto",
                 fontSize: "14px",

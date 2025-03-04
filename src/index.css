@@ -139,7 +139,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-slate-900 text-foreground;
+    @apply bg-slate-300 text-foreground;
   }
 }
 /* Webkit (Chrome, Safari, newer versions of Opera) */
@@ -164,4 +164,14 @@
 * {
   scrollbar-width: thin; /* Thin scrollbar */
   scrollbar-color: #6b7280 transparent; /* Thumb color and track color */
+}
+
+/* Webkit */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
 }
