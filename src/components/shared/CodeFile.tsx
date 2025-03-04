@@ -1,4 +1,3 @@
-import { FaCompress, FaExpand, FaExpandArrowsAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,11 +18,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import languages from "@/lib/languages";
+import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import { FaCompress, FaExpandArrowsAlt } from "react-icons/fa";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Textarea } from "../ui/textarea";
-import { cn } from "@/lib/utils";
 
 function CodeFile() {
   const [code, setCode] = useState(
