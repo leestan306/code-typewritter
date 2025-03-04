@@ -15,6 +15,8 @@ import { IoLogoAngular } from "react-icons/io";
 import { MdOutlineFlutterDash } from "react-icons/md";
 import { GrMysql } from "react-icons/gr";
 import { PiFileCSharpThin } from "react-icons/pi";
+import { SiGnubash } from "react-icons/si";
+import { SiPrisma } from "react-icons/si";
 
 const languages: {
   title: string;
@@ -125,6 +127,16 @@ const languages: {
     title: "Django",
     icon: SiDjango,
     iconColor: "text-green-700",
+  },
+  {
+    title: "Prisma",
+    icon: SiPrisma,
+    iconColor: "text-white",
+  },
+  {
+    title: "Bash",
+    icon: SiGnubash,
+    iconColor: "text-white",
   },
 ];
 

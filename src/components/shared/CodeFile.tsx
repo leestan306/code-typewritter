@@ -1,3 +1,4 @@
+import { FaCompress, FaExpand, FaExpandArrowsAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -36,12 +37,14 @@ function CodeFile() {
   const [height, setHeight] = useState(500);
   const [width, setWidth] = useState(500);
   const syntaxHighlighterRef = useRef<any>(null);
+  const codeFileRef = useRef<HTMLDivElement>(null);
   const fullLang = (title: string = language) => {
     const lang = languages.find((lang) => lang.title === title);
     return lang;
   };
   const [temporaryCode, setTemporaryCode] = useState(""); // State for typewriting effect
   const [isAnimating, setIsAnimating] = useState(false); // Track if animation is active
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const Icon = fullLang()?.icon;
 
   // Scroll to bottom effect
@@ -52,6 +55,55 @@ function CodeFile() {
       element.scrollTop = element.scrollHeight;
     }
   }, [temporaryCode, isAnimating]);
+
+  const toggleFullScreen = () => {
+    const element = codeFileRef.current;
+
+    if (!isFullScreen) {
+      // Request full screen
+      if (element?.requestFullscreen) {
+        element.requestFullscreen();
+      } else if ((element as any)?.webkitRequestFullscreen) {
+        (element as any).webkitRequestFullscreen();
+      } else if ((element as any)?.msRequestFullscreen) {
+        (element as any).msRequestFullscreen();
+      }
+      setIsFullScreen(true);
+    } else {
+      // Exit full screen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      } else if ((document as any).msExitFullscreen) {
+        (document as any).msExitFullscreen();
+      }
+      setIsFullScreen(false);
+    }
+  };
+
+  // Listen for fullscreen change events
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "msfullscreenchange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
 
   const startTypewriterEffect = () => {
     if (!code || isAnimating) return;
@@ -81,11 +133,11 @@ function CodeFile() {
     // Start the typing effect
     typeNextCharacter();
   };
+
   const detailsDialogButtonRef = useRef<HTMLButtonElement>(null);
   const animateButtonref = useRef<HTMLButtonElement>(null);
-
   return (
-    <div className="">
+    <div className="" ref={codeFileRef}>
       <div className="py-2  justify-between w-fit mx-auto gap-2 hidden">
         <Dialog>
           <DialogTrigger asChild>
@@ -244,6 +296,9 @@ function CodeFile() {
             >
               {fileName}
             </div>
+            <button onClick={toggleFullScreen} className="ml-auto">
+              {isFullScreen ? <FaCompress /> : <FaExpandArrowsAlt />}
+            </button>
           </div>
           <div>
             <SyntaxHighlighter
